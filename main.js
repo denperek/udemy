@@ -4,7 +4,7 @@ let money = +prompt('Ваш бюджет на месяц?', '');
 let time = prompt('Введите дату в формате YYYY-MM-DD', '2000-01-01');
 
 let appData = {
-    money,
+    budget: money,
     timeData: time,
     expenses: {},
     optionalExpenses: {},
@@ -12,10 +12,51 @@ let appData = {
     savings: false,
 }
 
-let key;
-for (let i = 0; i < 2; i++) {
-    key = prompt('Введите обязательную статью расходов в этом месяце', 'Хлеб');
-    appData.expenses[key] = prompt('Во сколько обойдется?', '2000');
+/*
+//Цикл через while
+let i = 0;
+while (i < 2) {
+    let a = prompt('Введите обязательную статью расходов в этом месяце', 'Хлеб');
+    let b = prompt('Во сколько обойдется?', '2000');
+    appData.expenses[a] = b;
+    i++;
+    }
+
+//Цикл через do while
+let i = 0;
+do {
+    let a = prompt('Введите обязательную статью расходов в этом месяце', 'Хлеб');
+    let b = prompt('Во сколько обойдется?', '2000');
+    appData.expenses[a] = b;
+    }
+while (i < 2)
+i++;
+*/
+
+for (let i = 0; i < 2;) {
+    let a = prompt('Введите обязательную статью расходов в этом месяце',);
+    let b = prompt('Во сколько обойдется?',);
+    
+    if (typeof(a) === 'string' && typeof(a) != null 
+        && typeof(b) != null && a != '' && b !='' && a.length < 50) {
+        appData.expenses[a] = b;
+        console.log("done");
+        i++;
+    } else {
+        console.log("invalid input, please try again");
+    }
+    
 }
 
-alert ('Ваш бюджет на день: ' + money/30 + 'р.');
+appData.moneyPerDay = appData.budget / 30;
+alert ('Ваш бюджет на день: ' + appData.moneyPerDay + 'р.');
+
+if(appData.moneyPerDay < 100) {
+    console.log("Минимальный уровень достатка")
+} else if (appData.moneyPerDay > 100) {
+    console.log("Средний уровень достатка")
+} else if (appData.moneyPerDay > 2000) {
+    console.log("Высокий уровень достатка")
+} else {
+    console.log("Произошла ошибка")
+}
