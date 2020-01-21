@@ -62,6 +62,9 @@ function detectLevel() {
     }
 
 }
+
+detectLevel()
+
 function checkSavings() {
     if (appData.savings == true) {
         let save = +prompt("Какова сумма накоплений?");
@@ -76,8 +79,9 @@ function checkSavings() {
 checkSavings()
 
 function chooseOptExpenses() {
-
-
+    for (let i = 1; i < 4; i++) {
+        appData.optionalExpenses[i] = prompt("Статья необязательных расходов?");
+    }
 }
 
 chooseOptExpenses()
