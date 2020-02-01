@@ -69,17 +69,13 @@ let appData = {
         while (true) { //бесконечный цикл, пока юзер не введет сроку
             let items = prompt('Что принесет дополнительный доход? (Перечислите через запятую)', '');
             if (String(+items) == 'NaN' && typeof (items) != null && items != '') { //проверяем что это не цифры, не "отмена" и не пустая строка
-                appData.income = items.split(',');
+                appData.income = items.split(', ');
                 appData.income.push(prompt('Может что-то еще?'));
                 appData.income.sort();
-                appData.income.unshift(undefined);
-                console.log('Все четко!');
 
                 let optExpMsg = ''; // переменная для вывода "Способы доп. заработка: " в одном сообщении
                 appData.income.forEach((item, index) => {
-                    if (item !== undefined) { //пропускаем пустые индексы, нулевой в данном случае
-                        optExpMsg += `${index} способ - ${item}; `
-                    }
+                optExpMsg += `${index+1} способ - ${item}; `
                 });
                 alert(`Способы доп. заработка: ${optExpMsg}`);
                 
@@ -91,12 +87,10 @@ let appData = {
     },
 }
 
- console.log(`Наша программа включает в себя данные:`);
+
     for (let key in appData) {
-        if(typeof(appData[key]) !== 'function'){ //исключаем методы
-        console.log(`${key}: ${appData[key]}`);
+          console.log(`Наша программа включает в себя данные: ${key}: ${appData[key]}`);
         }
-    }
 
 
   
